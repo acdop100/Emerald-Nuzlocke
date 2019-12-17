@@ -5,17 +5,17 @@ BattleFrontier_BattleTowerCorridor2_MapScripts:: @ 8248D4A
 	.byte 0
 
 BattleFrontier_BattleTowerCorridor2_MapScript1_248D5A: @ 8248D5A
-	compare VAR_FRONTIER_BATTLE_MODE, 2
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248D71
-	compare VAR_FRONTIER_BATTLE_MODE, 3
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248D91
 	end
 
 BattleFrontier_BattleTowerCorridor2_EventScript_248D71:: @ 8248D71
-	setvar VAR_0x8004, 14
-	special sub_8161F74
+	setvar VAR_0x8004, BATTLE_TOWER_FUNC_14
+	special CallBattleTowerFunc
 	checkplayergender
-	compare VAR_RESULT, 1
+	compare VAR_RESULT, FEMALE
 	goto_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248D8B
 	setvar VAR_OBJ_GFX_ID_F, EVENT_OBJ_GFX_BRENDAN_NORMAL
 	return
@@ -25,7 +25,7 @@ BattleFrontier_BattleTowerCorridor2_EventScript_248D8B:: @ 8248D8B
 	return
 
 BattleFrontier_BattleTowerCorridor2_EventScript_248D91:: @ 8248D91
-	special sub_813A76C
+	special SetBattleTowerLinkPlayerGfx
 	return
 
 BattleFrontier_BattleTowerCorridor2_MapScript2_248D95: @ 8248D95
@@ -36,7 +36,7 @@ BattleFrontier_BattleTowerCorridor2_EventScript_248D9F:: @ 8248D9F
 	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR2
 	hideobjectat 1, MAP_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR2
 	hideobjectat 4, MAP_BATTLE_FRONTIER_BATTLE_TOWER_CORRIDOR2
-	special sub_8139980
+	special OffsetCameraForBattle
 	end
 
 BattleFrontier_BattleTowerCorridor2_MapScript2_248DB2: @ 8248DB2
@@ -68,8 +68,8 @@ BattleFrontier_BattleTowerCorridor2_EventScript_248DBC:: @ 8248DBC
 	applymovement 2, BattleFrontier_BattleTowerCorridor2_Movement_248ED5
 	waitmovement 0
 	delay 40
-	applymovement 3, Common_Movement_WalkInPlaceUp
-	applymovement 2, Common_Movement_WalkInPlaceUp
+	applymovement 3, Common_Movement_WalkInPlaceFastestUp
+	applymovement 2, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	opendoor 7, 1
 	waitdooranim
@@ -87,13 +87,13 @@ BattleFrontier_BattleTowerCorridor2_EventScript_248DBC:: @ 8248DBC
 	end
 
 BattleFrontier_BattleTowerCorridor2_EventScript_248E71:: @ 8248E71
-	compare VAR_FRONTIER_BATTLE_MODE, 0
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248E9E
-	compare VAR_FRONTIER_BATTLE_MODE, 1
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248E9E
-	compare VAR_FRONTIER_BATTLE_MODE, 2
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248EA8
-	compare VAR_FRONTIER_BATTLE_MODE, 3
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS
 	call_if_eq BattleFrontier_BattleTowerCorridor2_EventScript_248EB2
 	return
 

@@ -12,9 +12,9 @@ BattleFrontier_BattleTowerElevator_EventScript_2419F0:: @ 82419F0
 	applymovement 1, BattleFrontier_BattleTowerElevator_Movement_241A86
 	applymovement EVENT_OBJ_ID_PLAYER, BattleFrontier_BattleTowerElevator_Movement_241A8A
 	waitmovement 0
-	special sub_813A080
+	special BufferBattleTowerElevatorFloors
 	waitse
-	special ShakeScreenInElevator
+	special MoveElevator
 	waitstate
 	delay 48
 	applymovement 1, BattleFrontier_BattleTowerElevator_Movement_241A8E
@@ -24,13 +24,13 @@ BattleFrontier_BattleTowerElevator_EventScript_2419F0:: @ 82419F0
 	end
 
 BattleFrontier_BattleTowerElevator_EventScript_241A28:: @ 8241A28
-	compare VAR_FRONTIER_BATTLE_MODE, 0
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_SINGLES
 	call_if_eq BattleFrontier_BattleTowerElevator_EventScript_241A55
-	compare VAR_FRONTIER_BATTLE_MODE, 1
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 	call_if_eq BattleFrontier_BattleTowerElevator_EventScript_241A55
-	compare VAR_FRONTIER_BATTLE_MODE, 2
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_MULTIS
 	call_if_eq BattleFrontier_BattleTowerElevator_EventScript_241A5F
-	compare VAR_FRONTIER_BATTLE_MODE, 3
+	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_LINK_MULTIS
 	call_if_eq BattleFrontier_BattleTowerElevator_EventScript_241A72
 	return
 
@@ -85,6 +85,6 @@ BattleFrontier_BattleTowerElevator_MapScript2_241A96: @ 8241A96
 
 BattleFrontier_BattleTowerElevator_EventScript_241AA0:: @ 8241AA0
 	setvar VAR_TEMP_1, 1
-	turnobject EVENT_OBJ_ID_PLAYER, 2
+	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
 	end
 

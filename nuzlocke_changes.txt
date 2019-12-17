@@ -1,0 +1,3 @@
+
+REMOVING POKEMON FROM PARTY AFTER FAINTING
+- function change: battle_scripts_command.c -> Cmd_tryfaintmon(void) -> if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) -> replaced friendship function call with ZeroMonData.
