@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\common_syms",
-    "\\constants",
+    "\\include",
     "\\include\\gba",
     "\\src"
   ],
-  "SelectedNode": "\\src\\m4a_1.s",
   "PreviewInSolutionExplorer": false
 }

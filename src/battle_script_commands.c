@@ -10370,15 +10370,26 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 
 static void Cmd_trygivecaughtmonnick(void)
 {
+    u32 value;
+
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
+        gBattleCommunication[MULTIUSE_STATE] = 4;
+        
+        // Why does it keep naming pokemon non-sense? (route 101 = CE, 102 = U')
+        value = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_MET_LOCATION);
+        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, &value);
+
+        break;
+        /*
         HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
         BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
         gBattleCommunication[MULTIUSE_STATE]++;
         gBattleCommunication[CURSOR_POSITION] = 0;
         BattleCreateYesNoCursorAt(0);
         break;
+        */
     case 1:
         if (gMain.newKeys & DPAD_UP && gBattleCommunication[CURSOR_POSITION] != 0)
         {
@@ -10394,6 +10405,9 @@ static void Cmd_trygivecaughtmonnick(void)
             gBattleCommunication[CURSOR_POSITION] = 1;
             BattleCreateYesNoCursorAt(1);
         }
+
+        
+        /*
         if (gMain.newKeys & A_BUTTON)
         {
             PlaySE(SE_SELECT);
@@ -10412,7 +10426,6 @@ static void Cmd_trygivecaughtmonnick(void)
             PlaySE(SE_SELECT);
             gBattleCommunication[MULTIUSE_STATE] = 4;
         }
-        break;
     case 2:
         if (!gPaletteFade.active)
         {
@@ -10435,6 +10448,7 @@ static void Cmd_trygivecaughtmonnick(void)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
         break;
+        */
     case 4:
         if (CalculatePlayerPartyCount() == 6)
             gBattlescriptCurrInstr += 5;
