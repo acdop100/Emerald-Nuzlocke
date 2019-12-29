@@ -1,3 +1,6 @@
 
 REMOVING POKEMON FROM PARTY AFTER FAINTING
 - function change: battle_scripts_command.c -> Cmd_tryfaintmon(void) -> if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) -> replaced friendship function call with ZeroMonData.
+
+DOUBLED AUDIO SAMPLING RATE - REDUCES NOISE
+- I just followed the wiki guide on this. values are now 26758Hz/0x1C0 with buffer changes to 3136/C40.
