@@ -48,6 +48,8 @@
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
+
+
 // this file's functions
 static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
@@ -207,6 +209,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
 }
+
 
 static void ResetMiniGamesResults(void)
 {

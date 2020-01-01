@@ -58,6 +58,8 @@
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
+//extern struct RouteCatchCheck routesArr[34];
+
 extern const u8* const gBattleScriptsForMoveEffects[];
 
 #define DEFENDER_IS_PROTECTED ((gProtectStructs[gBattlerTarget].protected) && (gBattleMoves[gCurrentMove].flags & FLAG_PROTECT_AFFECTED))
@@ -583,6 +585,45 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_finishturn,                              //0xF7
     Cmd_trainerslideout                          //0xF8
 };
+
+char catchableRoutes[34][9] = {
+    "ROUTE 101",
+    "ROUTE 102",
+    "ROUTE 103",
+    "ROUTE 104",
+    "ROUTE 105",
+    "ROUTE 106",
+    "ROUTE 107",
+    "ROUTE 108",
+    "ROUTE 109",
+    "ROUTE 110",
+    "ROUTE 111",
+    "ROUTE 112",
+    "ROUTE 113",
+    "ROUTE 114",
+    "ROUTE 115",
+    "ROUTE 116",
+    "ROUTE 117",
+    "ROUTE 118",
+    "ROUTE 119",
+    "ROUTE 120",
+    "ROUTE 121",
+    "ROUTE 122",
+    "ROUTE 123",
+    "ROUTE 124",
+    "ROUTE 125",
+    "ROUTE 126",
+    "ROUTE 127",
+    "ROUTE 128",
+    "ROUTE 129",
+    "ROUTE 130",
+    "ROUTE 131",
+    "ROUTE 132",
+    "ROUTE 133",
+    "ROUTE 134",
+};
+
+int caught[34] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 struct StatFractions
 {
@@ -10207,6 +10248,14 @@ static void Cmd_handleballthrow(void)
         }
     }
 }
+
+
+/* Struct that will be in an array to see if a pokemon has been caught on that route. 
+struct RouteCatchCheck
+{
+    char routeName[9]; // Route names are 9 chars long - ROUTE 101
+    int caught;
+};*/
 
 
 static void ExtraCatchCheck(void){

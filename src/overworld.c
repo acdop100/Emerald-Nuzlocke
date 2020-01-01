@@ -385,11 +385,13 @@ static void (*const gMovementStatusHandler[])(struct LinkPlayerEventObject *, st
 void DoWhiteOut(void)
 {
     ScriptContext2_RunNewScript(EventScript_WhiteOut);
-    SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
+    ClearSaveData();
+    /*SetMoney(&gSaveBlock1Ptr->money, GetMoney(&gSaveBlock1Ptr->money) / 2);
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();
     SetWarpDestinationToLastHealLocation();
-    WarpIntoMap();
+    WarpIntoMap();*/
+    NewGameInitData();
 }
 
 void Overworld_ResetStateAfterFly(void)
