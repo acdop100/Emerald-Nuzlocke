@@ -52,6 +52,8 @@
 #include "menu_specialized.h"
 #include "constants/rgb.h"
 #include "data.h"
+#include "region_map.h"
+#include "malloc.h"
 #include "constants/party_menu.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
@@ -326,6 +328,8 @@ static void Cmd_removeattackerstatus1(void);
 static void Cmd_finishaction(void);
 static void Cmd_finishturn(void);
 static void Cmd_trainerslideout(void);
+
+static void ExtraCatchCheck(void);  // Function declaration of subfunction to release extra pokemon.
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -10204,6 +10208,19 @@ static void Cmd_handleballthrow(void)
     }
 }
 
+
+static void ExtraCatchCheck(void){
+/*
+    int number_of_mons_in_pc_and_party;
+
+    for (int count = 0; count <= number_of_mons_in_pc_and_party; count++){
+        if 
+    }
+
+    //ZeroMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]]);
+*/
+}
+
 static void Cmd_givecaughtmon(void)
 {
     if (GiveMonToPlayer(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]]) != MON_GIVEN_TO_PARTY)
@@ -10370,16 +10387,17 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 
 static void Cmd_trygivecaughtmonnick(void)
 {
-    u32 value;
+
+    u8 *metLocationString = Alloc(32);
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
         gBattleCommunication[MULTIUSE_STATE] = 4;
         
-        // Why does it keep naming pokemon non-sense? (route 101 = CE, 102 = U')
-        value = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_MET_LOCATION);
-        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, &value);
+        // Gets location of where you met the pokemon, returns it to rename the pokemon properly.
+        sub_8124610(metLocationString, GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_MET_LOCATION));
+        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_NICKNAME, metLocationString);
 
         break;
         /*

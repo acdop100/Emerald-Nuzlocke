@@ -1,15 +1,29 @@
 FINISHED:
 
 REMOVING POKEMON FROM PARTY AFTER FAINTING
-- function change: battle_scripts_command.c -> Cmd_tryfaintmon(void) -> if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) -> replaced friendship function call with ZeroMonData.
+- function change: battle_scripts_command.c -> Cmd_tryfaintmon(void) -> if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) -> replaced friendship function call with ZeroMonData (line 2991).
 
 DOUBLED AUDIO SAMPLING RATE - REDUCES NOISE
 - I just followed the wiki guide on this. values are now 26758Hz/0x1C0 with buffer changes to 3136/C40.
+
 
 --------------------------------------------------------------------
 
 WIP:
 
+WORKING BUT NEEDS CLEANUP/CODE CHECKS:
+
 FORCE POKEMON NAME TO BE NAME OF ROUTE CAUGHT ON.
 - Will need to replace all calls of DoNamingScreen:
-    - battle_scripts_command.c (line 10412, don't call gBattleScriptingCommand "Cmd_trygivecaughtmonnick")
+    - battle_scripts_command.c -> Cmd_trygivecaughtmonnick (line 10408, don't allow nickname screen)
+
+
+NOT WORKING/IN PROGRESS:
+
+DON'T ALLOW PLAYER TO CATCH MORE THAN ONE POKEMON PER ROUTE
+- Starter pokemon counts as being caught on route 101, need to make sure player can catch another there.
+- How to handle?
+    - Change code in battle_scripts_command.c -> Cmd_handleballthrow (line 10059)
+        - Function to check on catch if pokemon was caught on that route already. If so, release it.
+        - Created sub-function ExtraCatchCheck below Cmd_handleballthrow (line 10207).
+        - Code needs to change in both places where pokemon is caught. 
