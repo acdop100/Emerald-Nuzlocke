@@ -23,12 +23,35 @@ FORCE POKEMON NAME TO BE NAME OF ROUTE CAUGHT ON.
 
 NOT WORKING/IN PROGRESS:
 
-DON'T ALLOW PLAYER TO CATCH MORE THAN ONE POKEMON PER ROUTE
+ONLY ALLOW PLAYER TO CATCH FIRST POKEMON ENCOUNTERED PER ROUTE
 - Starter pokemon counts as being caught on route 101, need to make sure player can catch another there.
 - How to handle?
     - Change code in battle_scripts_command.c -> Cmd_handleballthrow
-        - Function to check on catch if pokemon was caught on that route already. If so, release it.
-        - Created array of route names and 
+        - Function to check on catch if this is first pokemon encountered. If not, release it.
         - Code needs to change in both places where pokemon is caught. 
+
+
+--------------------------------------------------------------------
+
+OPTIONAL RULES TO POSSIBLY IMPLEMENT:
+
+CHOICE OF AUTO-RENAME OR NOT
+
+STARTER POKEMON CHOSEN BASED OFF OF TRAINER ID
+
+DON'T SPAWN DUPLICATE POKEMON THE PLAYER HAS ALREADY CAUGHT FOR A FIRST ENCOUNTER ON A ROUTE
+
+BAN:
+- USE OF LEGENDARY POKEMON
+- BATTLE FLEEING
+- DAYCARES
+- EXP. SHARE
+- POKEMON RECIEVED FROM NPCS 
+
+LIMITING POKEBALL PURCHASE AMOUNT (Shouldn't matter really, though)
+
+ONLY ALLOWED TO CATCH A POKEMON AFTER BEATING THE A GYM
+
+USE GYM BADGES AS A CHECKPOINT WHERE A PLAYER CAN RESTART THERE AFTER A WHITEOUT
 
 
